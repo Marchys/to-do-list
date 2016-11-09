@@ -1,0 +1,21 @@
+{
+  "extends": "react-app",
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "react/prop-types": 2,
+    "import/prefer-default-export": 1,
+    "import/no-extraneous-dependencies": 1,
+    "import/no-named-as-default": 1,
+    "import/no-unresolved": 2,
+    "no-console": 1,
+    "no-debugger": 1,
+    "object-curly-spacing": [
+      1,
+      "always"
+    ],
+    "semi": 1
+  }
+}
