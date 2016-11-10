@@ -3,12 +3,18 @@ import { Task } from '../molecules';
 
 class TaskHolder extends Component {
   render() {
-    const { tasks, actions } = this.props;
+    const { tasks, doTask, undoTask } = this.props;
     return (
       <div>
         <ul>
           {tasks.map((task) =>
-            <Task text={task.text} key={task.id} />
+            <Task 
+            text={task.text} 
+            done={task.done}
+            key={task.id}
+            onClick={task.done ?
+              undoTask.bind(void 0, task.id) : doTask.bind(void 0, task.id)}
+            />
           )}
         </ul>
       </div>
@@ -18,7 +24,8 @@ class TaskHolder extends Component {
 
 TaskHolder.propTypes = {
   tasks: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+  doTask: PropTypes.func.isRequired,
+  undoTask: PropTypes.func.isRequired,
 };
 
 export default TaskHolder;

@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 
 class BasicInput extends Component {
   handleOnKeyDown = (event, onkeyDown, keyName) => {
-    //const keyId = event;
     if (event.key !== keyName && keyName !== void 0) {      
       return this;
     }

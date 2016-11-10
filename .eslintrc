@@ -6,11 +6,13 @@
   ],
   "rules": {
     "react/prop-types": 2,
+    "react/jsx-closing-bracket-location": 1,
     "import/prefer-default-export": 1,
     "import/no-extraneous-dependencies": 1,
     "import/no-named-as-default": 1,
     "import/imports-first": 1,
     "import/no-unresolved": 2,
+    "no-unused-vars": 2,
     "no-console": 1,
     "no-debugger": 1,
     "object-curly-spacing": [
