@@ -1,10 +1,10 @@
-import { TASK_SEARCH_TEXT } from '../actions/taskSearch';
+import { SET_TASK_SEARCH_TEXT } from '../actions/taskSearch';
 
 const initialState = '';
 
 const taskSearch = (state = initialState, action) => {
   switch (action.type) {
-    case TASK_SEARCH_TEXT:
+    case SET_TASK_SEARCH_TEXT:
       return action.text;
     default:
       return state;
