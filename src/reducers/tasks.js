@@ -16,8 +16,6 @@ const tasks = (state = initialState, action) => {
         ...state
       ];
     case DO_TASK:
-    console.log('ho');
-    console.log(action.id);
       return state.map(task => {
         if(action.id !== task.id){
           return task;
