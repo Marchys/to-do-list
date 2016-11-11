@@ -5,7 +5,7 @@ const initialState = '';
 const taskSearch = (state = initialState, action) => {
   switch (action.type) {
     case TASK_SEARCH_TEXT:
-      return action.type;
+      return action.text;
     default:
       return state;
   }

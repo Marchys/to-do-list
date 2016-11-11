@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-//import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Header, TaskHolder, Footer } from '../components/organisms';
 import { TaskIntroducer } from '../components/molecules';
@@ -44,7 +43,7 @@ class App extends Component {
     const visibleTasks = getVisibleTasks(tasks, taskFilter, taskSearch);
     return (
       <div className="App">
-        <Header />
+        <Header setTaskSearch={this.props.setTaskSearch}/>
         <TaskIntroducer addTask={this.props.addTask} />
         <TaskHolder
           tasks={visibleTasks}
@@ -72,6 +71,7 @@ App.propTypes = {
   filterDone: PropTypes.func.isRequired,
   doTask: PropTypes.func.isRequired,
   undoTask: PropTypes.func.isRequired,
+  setTaskSearch: PropTypes.func.isRequired,
 };
 
 const appConnected = connect(selector, actions)(App);
