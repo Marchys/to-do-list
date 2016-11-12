@@ -2,10 +2,11 @@ import React, { Component, PropTypes } from 'react';
 
 class Task extends Component {
   render() {
-    const { text, onClick, done } = this.props;
-    const style = done ? { color: 'gray' } : { color: 'black' };
+    const { text, onClick, done, className } = this.props;
+    const style = done ? { textDecoration: 'line-through' } 
+    : { textDecoration: 'none' };
     return (
-      <li style={style} onClick={onClick}>
+      <li className={className} style={style} onClick={onClick}>
         {text}
       </li>
     );
@@ -15,7 +16,8 @@ class Task extends Component {
 Task.propTypes = {
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  done: PropTypes.bool.isRequired  
+  done: PropTypes.bool.isRequired,
+  className: PropTypes.string,
 };
 
 export default Task;

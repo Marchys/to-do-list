@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { BasicInput } from '../atoms';
+import './taskIntroducer.css';
 
 class TaskIntroducer extends Component {
   handleEventTask = (event, handleTask) => {
@@ -10,8 +11,9 @@ class TaskIntroducer extends Component {
     const { addTask } = this.props;
     const partialAddTask = event => this.handleEventTask(event, addTask);
     return (
-      <div>
-        <BasicInput keyName="Enter" onKeyDown={partialAddTask} />
+      <div className="taskIntroducerContainer">
+        <div className="invisibleBlock"></div>
+        <BasicInput className="taskIntroducer" keyName="Enter" onKeyDown={partialAddTask} />
       </div>
     );
   }

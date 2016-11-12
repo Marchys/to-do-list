@@ -1,0 +1,17 @@
+.taskIntroducerContainer{
+    display: flex;
+    height: 50px;
+}
+
+.taskIntroducer{
+  font-size: 20px;
+  list-style-type: none;
+  border-left: solid 1px #FFBEBF;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  border-top: solid 1px #CDE5FF;
+  width: 93%;
+  border-bottom: none;
+  outline: none;
+}

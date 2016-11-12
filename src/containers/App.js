@@ -52,7 +52,7 @@ const getEnabledTasks = (tasks, filter, taskSearch) => {
 
 
 const getPageAmount = (tasks, itemsPerPage) => {
-  return Math.ceil(tasks.length/itemsPerPage);
+  return Math.ceil(tasks.length / itemsPerPage);
 };
 
 class App extends Component {
@@ -64,12 +64,14 @@ class App extends Component {
     return (
       <div className="App">
         <Header setTaskSearch={this.props.setTaskSearch} />
-        <TaskIntroducer addTask={this.props.addTask} />
-        <TaskHolder
-          tasks={paginatedTasks}
-          doTask={this.props.doTask}
-          undoTask={this.props.undoTask}
-        />
+        <div className="whitePaper">
+          <TaskIntroducer addTask={this.props.addTask} />
+          <TaskHolder
+            tasks={paginatedTasks}
+            doTask={this.props.doTask}
+            undoTask={this.props.undoTask}
+          />
+        </div>
         <Footer
           taskFilter={taskFilter}
           filterAll={this.props.filterAll}

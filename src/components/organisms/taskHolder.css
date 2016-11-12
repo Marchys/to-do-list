@@ -1,0 +1,30 @@
+.task{
+  font-family: 'Covered By Your Grace';
+  font-size: 27px;
+  list-style-type: none;
+  border-left: solid 1px #FFBEBF;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  border-top: solid 1px #CDE5FF;
+  width: 93%;
+  color: #281FA9;
+}
+
+.invisibleBlock{
+  display:flex;
+  width: 7%;
+  border-top: solid 1px #CDE5FF;
+}
+
+.taskContainer{
+  display: flex;
+  height: 50px;
+}
+
+.taskUl{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
