@@ -9,10 +9,10 @@ class BasicInput extends Component {
   }
 
   render() {
-    const { onChange, onKeyDown, keyName, placeholder } = this.props;
+    const { onChange, onKeyDown, keyName, placeholder, className } = this.props;
     const onKeyDownPartial = event => this.handleOnKeyDown(event, onKeyDown, keyName);
     return (
-      <input onChange={onChange} onKeyDown={onKeyDownPartial} placeholder={placeholder} />
+      <input className={className} onChange={onChange} onKeyDown={onKeyDownPartial} placeholder={placeholder} />
     );
   }
 }
@@ -21,7 +21,8 @@ BasicInput.propTypes = {
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   onKeyDown: PropTypes.func,
-  keyName: PropTypes.string
+  keyName: PropTypes.string,
+  className: PropTypes.string
 };
 
 

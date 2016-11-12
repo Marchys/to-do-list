@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 
 class BasicButton extends Component {
   render() {
-    const { children, onClick, style } = this.props;
+    const { children, onClick, className } = this.props;
     return (
-      <button onClick={onClick} style={style}>
+      <button onClick={onClick} className={className}>
         {children}
       </button>
     );
@@ -14,7 +14,8 @@ class BasicButton extends Component {
 BasicButton.propTypes = {
   children: PropTypes.any,
   onClick: PropTypes.func,
-  style: PropTypes.object
+  style: PropTypes.object,
+  className: PropTypes.string
 };
 
 

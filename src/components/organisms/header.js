@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { BasicButton, BasicInput } from '../atoms';
+import './header.css';
 
 class Header extends Component {
   constructor(...args) {
@@ -11,9 +12,9 @@ class Header extends Component {
 
   renderDefault = () => {
     return (
-      <div>
-        <h1>The to-do list exercise o.o</h1>
-        <BasicButton onClick={() => this.setState({ searching: true })}>search</BasicButton>
+      <div className="container">
+        <h1 className="title" >The to-do list exercise</h1>
+        <BasicButton className="button" onClick={() => this.setState({ searching: true })}><i className="fa fa-search" /></BasicButton>
       </div>
     );
   }
@@ -29,10 +30,9 @@ class Header extends Component {
 
   renderSearching = (setTaskSearch) => {
     return (
-      <div>
-        <h1>The to-do list exercise o.o</h1>
-        <BasicInput onKeyDown={setTaskSearch} />
-        <BasicButton onClick={() => this.setState({ searching: false })}>close</BasicButton>
+      <div className="container">
+        <BasicInput className="input" placeholder="Type here your search" onKeyDown={setTaskSearch} />
+        <BasicButton className="button" onClick={() => this.setState({ searching: false })}><i className="fa fa-times" /></BasicButton>
       </div>
     );
   }
