@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Header, TaskHolder, Footer } from '../components/organisms';
-import { TaskIntroducer } from '../components/molecules';
+import { Header, WhitePaper, Footer } from '../components/organisms';
 import './App.css';
 import * as taskActions from '../actions/tasks';
 import * as filterActions from '../actions/filter';
@@ -92,14 +91,12 @@ class App extends Component {
           disableSearch={this.props.disableSearch}
           enabled={this.props.search.enabled}
         />
-        <div className="whitePaper">
-          <TaskIntroducer addTask={this.props.addTask} />
-          <TaskHolder
-            tasks={placeholderedTasks}
-            doTask={this.props.doTask}
-            undoTask={this.props.undoTask}
-          />
-        </div>
+        <WhitePaper 
+          tasks={placeholderedTasks}
+          doTask={this.props.doTask}
+          undoTask={this.props.undoTask}
+          addTask={this.props.addTask}
+        />
         <Footer className="footer"
           filter={filter}
           filterAll={this.props.filterAll}

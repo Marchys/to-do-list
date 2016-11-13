@@ -1,0 +1,72 @@
+.whitePaper{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 350px;
+  background-color: white;
+  box-shadow: 0 6px 10px 2px lightgray;
+}
+
+.whitePaper::after{
+  display: flex;
+  content: '';
+  margin-top: -50px;
+  height: 50px;
+  width: 100%;
+  box-shadow: 0 1px 0px lightgray,
+  0 6px 0 -3px #f6f6f6,
+  0 7px 1px -3px lightgray,
+  0 12px 0 -6px #f6f6f6,
+  0 13px 2px -6px lightgray;
+}
+
+.task{
+  font-family: 'Covered By Your Grace';
+  font-size: 27px;
+  list-style-type: none;
+  border-left: solid 1px #FFBEBF;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  border-top: solid 1px #CDE5FF;
+  width: 93%;
+  color: #281FA9;
+}
+
+.invisibleBlock{
+  display:flex;
+  width: 7%;
+  border-top: solid 1px #CDE5FF;
+}
+
+.taskContainer{
+  display: flex;
+  height: 50px;
+}
+
+.taskUl{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.taskIntroducerContainer{
+    display: flex;
+    height: 50px;
+}
+
+.taskIntroducer{
+  font-size: 20px;
+  border-right: 0;
+  list-style-type: none;
+  border-left: solid 1px #FFBEBF;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  border-top: solid 1px #CDE5FF;
+  width: 93%;
+  border-bottom: none;
+  outline: none;
+}
+
