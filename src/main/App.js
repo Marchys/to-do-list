@@ -41,7 +41,7 @@ const applyFilter = (tasks, filter) => {
   * @return {array} The tasks that pass the search
   */
 const applySearch = (tasks, term) => {
-  return tasks.filter(task => task.text.includes(term));
+  return tasks.filter(task => task.text.toLowerCase().includes(term.toLowerCase()));
 };
 
 /**
