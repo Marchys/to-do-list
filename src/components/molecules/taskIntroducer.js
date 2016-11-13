@@ -5,7 +5,10 @@ class TaskIntroducer extends Component {
   handleEventTask = (event, handleTask) => {
     const text = event.target.value;
     event.target.value = '';
+    // not trigger the action if user enters an empty task
+    if(text !== ''){
     handleTask(text);
+    }
   }
   render() {
     const { addTask, className } = this.props;
