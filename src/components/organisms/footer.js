@@ -12,16 +12,16 @@ class Footer extends Component {
   }
   render() {
     const {
-      taskFilter,
+      filter,
       filterAll,
       filterPending,
       filterDone,
       setPage,
       pageAmount,
       page } = this.props;
-    const pendingStyle = this.calculateStyle(taskFilter, 'TASK_FILTER_PENDING');
-    const allStyle = this.calculateStyle(taskFilter, 'TASK_FILTER_ALL');
-    const doneStyle = this.calculateStyle(taskFilter, 'TASK_FILTER_DONE');
+    const pendingStyle = this.calculateStyle(filter, 'FILTER_PENDING');
+    const allStyle = this.calculateStyle(filter, 'FILTER_ALL');
+    const doneStyle = this.calculateStyle(filter, 'FILTER_DONE');
     return (
       <div className="footer">
         <BasicButton className="filterButton" style={allStyle} onClick={filterAll}>All</BasicButton>
@@ -40,7 +40,7 @@ Footer.propTypes = {
   filterPending: PropTypes.func.isRequired,
   filterDone: PropTypes.func.isRequired,
   setPage: PropTypes.func.isRequired,
-  taskFilter: PropTypes.string.isRequired
+  filter: PropTypes.string.isRequired
 };
 
 export default Footer;

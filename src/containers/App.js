@@ -4,25 +4,25 @@ import { Header, TaskHolder, Footer } from '../components/organisms';
 import { TaskIntroducer } from '../components/molecules';
 import './App.css';
 import * as taskActions from '../actions/tasks';
-import * as taskFilterActions from '../actions/taskFilter';
-import * as taskSearchActions from '../actions/taskSearch';
+import * as filterActions from '../actions/filter';
+import * as searchActions from '../actions/search';
 import * as paginationActions from '../actions/pagination';
 
-const actions = Object.assign({}, taskFilterActions, taskActions, taskSearchActions, paginationActions);
+const actions = Object.assign({}, filterActions, taskActions, searchActions, paginationActions);
 const selector = state => ({
   tasks: state.tasks,
-  taskFilter: state.taskFilter,
-  taskSearch: state.taskSearch,
+  filter: state.filter,
+  search: state.search,
   pagination: state.pagination,
 });
 
 const applyFilter = (tasks, filter) => {
   switch (filter) {
-    case 'TASK_FILTER_ALL':
+    case 'FILTER_ALL':
       return tasks;
-    case 'TASK_FILTER_DONE':
+    case 'FILTER_DONE':
       return tasks.filter(task => task.done);
-    case 'TASK_FILTER_PENDING':
+    case 'FILTER_PENDING':
       return tasks.filter(task => !task.done);
     default:
       return tasks;
@@ -74,14 +74,19 @@ const addPlaceholderTasks = (tasks, itemsPerPage) => {
 
 class App extends Component {
   render() {
-    const { tasks, taskFilter, taskSearch, pagination } = this.props;
-    const enabledTasks = getEnabledTasks(tasks, taskFilter, taskSearch);
+    const { tasks, filter, search, pagination } = this.props;
+    const enabledTasks = getEnabledTasks(tasks, filter, search.term);
     const pageAmount = getPageAmount(enabledTasks, pagination.itemsPerPage);
     const paginatedTasks = applyPagination(enabledTasks, pagination);
     const placeholderedTasks = addPlaceholderTasks(paginatedTasks, pagination.itemsPerPage);
     return (
       <div className="App">
-        <Header setTaskSearch={this.props.setTaskSearch} />
+        <Header 
+          setSearch={this.props.setSearch}
+          enableSearch={this.props.enableSearch}
+          disableSearch={this.props.disableSearch}
+          enabled={this.props.search.enabled}
+        />
         <div className="whitePaper">
           <TaskIntroducer addTask={this.props.addTask} />
           <TaskHolder
@@ -91,7 +96,7 @@ class App extends Component {
           />
         </div>
         <Footer className="footer"
-          taskFilter={taskFilter}
+          filter={filter}
           filterAll={this.props.filterAll}
           filterPending={this.props.filterPending}
           filterDone={this.props.filterDone}
@@ -106,8 +111,8 @@ class App extends Component {
 
 App.propTypes = {
   tasks: PropTypes.array.isRequired,
-  taskFilter: PropTypes.string.isRequired,
-  taskSearch: PropTypes.string.isRequired,
+  filter: PropTypes.string.isRequired,
+  search: PropTypes.object.isRequired,
   pagination: PropTypes.object.isRequired,
   addTask: PropTypes.func.isRequired,
   filterAll: PropTypes.func.isRequired,
@@ -115,7 +120,9 @@ App.propTypes = {
   filterDone: PropTypes.func.isRequired,
   doTask: PropTypes.func.isRequired,
   undoTask: PropTypes.func.isRequired,
-  setTaskSearch: PropTypes.func.isRequired,
+  setSearch: PropTypes.func.isRequired,
+  enableSearch: PropTypes.func.isRequired,
+  disableSearch: PropTypes.func.isRequired,
   setPage: PropTypes.func.isRequired
 };
 

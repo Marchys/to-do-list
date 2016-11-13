@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import tasks from './tasks';
-import taskFilter from './taskFilter';
-import taskSearch from './taskSearch';
+import filter from './filter';
+import search from './search';
 import pagination from './pagination';
 
 export default combineReducers({
     tasks,
-    taskFilter,
-    taskSearch,
+    filter,
+    search,
     pagination
 });
