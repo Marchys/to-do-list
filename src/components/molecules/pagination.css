@@ -1,0 +1,19 @@
+.liPageControl{
+display: flex;
+font-size: 15px;
+margin-left: 5px;
+}
+
+.pagination{
+ display: flex;
+ margin-left: auto;
+ margin-right: 0;
+}
+
+.circle-selected{
+  color: #838383;
+}
+
+.circle-unselected{
+  color: #AAAAAA;
+}

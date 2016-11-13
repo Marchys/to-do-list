@@ -1,16 +1,17 @@
 import React, { Component, PropTypes } from 'react';
+import './pagination.css';
 
 class Pagination extends Component {
   render() {
     const {  setPage, pageAmount, currentPage } = this.props;
     const pageArray = Array.from(new Array(pageAmount), (_, index) => index);
     return (
-      <ol>
+      <ol className="pagination">
         {pageArray.map((page) => {
-          const style = page !== currentPage ? { color: 'black' } : { color: 'blue' };
+          const iconClass = page !== currentPage ? 'fa-circle-o circle-unselected' : 'fa-circle circle-selected';
           return (
-            <li key={page} style={style} onClick={setPage.bind(void 0, page)}>
-              {page + 1}
+            <li key={page} className='liPageControl' onClick={setPage.bind(void 0, page)}>
+              <i className={`fa ${iconClass}`} />
             </li>
           );
         }
