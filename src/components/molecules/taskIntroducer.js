@@ -13,7 +13,7 @@ class TaskIntroducer extends Component {
     return (
       <div className="taskIntroducerContainer">
         <div className="invisibleBlock"></div>
-        <BasicInput className="taskIntroducer" keyName="Enter" onKeyDown={partialAddTask} />
+        <BasicInput className="taskIntroducer" keyName="Enter" placeholder="Type a new task and press [ENTER]" onKeyDown={partialAddTask} />
       </div>
     );
   }
