@@ -33,10 +33,10 @@ const applySearch = (tasks, taskSearch) => {
   return tasks.filter(task => task.text.includes(taskSearch));
 };
 
-const applyPagination = (tasks, pagination) => {
+const applyPagination = (tasks, pageAmount, page, itemsPerPage) => {
+  const lowerLimit = page * itemsPerPage;
+  const upperLimit = lowerLimit + itemsPerPage;  
   return tasks.filter((_, index) => {
-    const lowerLimit = pagination.page * pagination.itemsPerPage;
-    const upperLimit = lowerLimit + pagination.itemsPerPage;
     if (index >= lowerLimit && index < upperLimit) {
       return true;
     }
@@ -50,6 +50,9 @@ const getEnabledTasks = (tasks, filter, taskSearch) => {
   return searchedTasks;
 };
 
+const isPagePossible = (page, pageAmount) => {
+return (page + 1) <= pageAmount;
+};
 
 const getPageAmount = (tasks, itemsPerPage) => {
   return Math.ceil(tasks.length / itemsPerPage);
@@ -77,7 +80,9 @@ class App extends Component {
     const { tasks, filter, search, pagination } = this.props;
     const enabledTasks = getEnabledTasks(tasks, filter, search.term);
     const pageAmount = getPageAmount(enabledTasks, pagination.itemsPerPage);
-    const paginatedTasks = applyPagination(enabledTasks, pagination);
+    const calculatedPage = isPagePossible(pagination.page, pageAmount) ?
+    pagination.page : pageAmount - 1;
+    const paginatedTasks = applyPagination(enabledTasks, pageAmount, calculatedPage, pagination.itemsPerPage);
     const placeholderedTasks = addPlaceholderTasks(paginatedTasks, pagination.itemsPerPage);
     return (
       <div className="App">
@@ -102,7 +107,7 @@ class App extends Component {
           filterDone={this.props.filterDone}
           setPage={this.props.setPage}
           pageAmount={pageAmount}
-          page={pagination.page}
+          page={calculatedPage}
         />
       </div>
     );
