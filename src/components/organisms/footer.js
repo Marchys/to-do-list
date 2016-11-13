@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { BasicButton } from '../atoms';
 import { Pagination } from '../molecules';
+import './footer.css';
 
 class Footer extends Component {
   calculateStyle = (filter, id) => {
     if (filter === id) {
-      return { color: 'blue' };
+      return { color: '#838383' };
     }
-    return { color: 'red' };
+    return { color: '#AAAAAA' };
   }
   render() {
     const {
@@ -22,10 +23,10 @@ class Footer extends Component {
     const allStyle = this.calculateStyle(taskFilter, 'TASK_FILTER_ALL');
     const doneStyle = this.calculateStyle(taskFilter, 'TASK_FILTER_DONE');
     return (
-      <div>
-        <BasicButton style={allStyle} onClick={filterAll}>All</BasicButton>
-        <BasicButton style={pendingStyle} onClick={filterPending}>To do</BasicButton>
-        <BasicButton style={doneStyle} onClick={filterDone}>Done</BasicButton>
+      <div className="footer">
+        <BasicButton className="filterButton" style={allStyle} onClick={filterAll}>All</BasicButton>
+        <BasicButton className="filterButton" style={pendingStyle} onClick={filterPending}>To do</BasicButton>
+        <BasicButton className="filterButton" style={doneStyle} onClick={filterDone}>Done</BasicButton>
         <Pagination pageAmount={pageAmount} currentPage={page} setPage={setPage}/>
       </div>
     );

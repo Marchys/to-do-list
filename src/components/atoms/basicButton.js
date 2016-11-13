@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 
 class BasicButton extends Component {
   render() {
-    const { children, onClick, className } = this.props;
+    const { children, onClick, className, style } = this.props;
     return (
-      <button onClick={onClick} className={className}>
+      <button onClick={onClick} className={className} style={style}>
         {children}
       </button>
     );
