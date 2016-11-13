@@ -4,6 +4,7 @@ import { BasicInput } from '../atoms';
 class TaskIntroducer extends Component {
   handleEventTask = (event, handleTask) => {
     const text = event.target.value;
+    event.target.value = '';
     handleTask(text);
   }
   render() {
