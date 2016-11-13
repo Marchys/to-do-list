@@ -90,7 +90,7 @@ class App extends Component {
             undoTask={this.props.undoTask}
           />
         </div>
-        <Footer
+        <Footer className="footer"
           taskFilter={taskFilter}
           filterAll={this.props.filterAll}
           filterPending={this.props.filterPending}
