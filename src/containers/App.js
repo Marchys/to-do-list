@@ -55,19 +55,37 @@ const getPageAmount = (tasks, itemsPerPage) => {
   return Math.ceil(tasks.length / itemsPerPage);
 };
 
+const addPlaceholderTasks = (tasks, itemsPerPage) => {
+  if (tasks.length === itemsPerPage) {
+    return tasks;
+  }
+  const amountPlaceholder = itemsPerPage - tasks.length;
+  const idLastTask = tasks[0] !== void 0 ? tasks[0].id : 0;
+  const placeholderItems = Array.from(new Array(amountPlaceholder), (_, index) => {
+    return {
+      id: (index + 1) + idLastTask,
+      done: false,
+      text: '',
+      placeholder: true
+    };
+  });
+  return [...tasks, ...placeholderItems];
+};
+
 class App extends Component {
   render() {
     const { tasks, taskFilter, taskSearch, pagination } = this.props;
     const enabledTasks = getEnabledTasks(tasks, taskFilter, taskSearch);
     const pageAmount = getPageAmount(enabledTasks, pagination.itemsPerPage);
     const paginatedTasks = applyPagination(enabledTasks, pagination);
+    const placeholderedTasks = addPlaceholderTasks(paginatedTasks, pagination.itemsPerPage);
     return (
       <div className="App">
         <Header setTaskSearch={this.props.setTaskSearch} />
         <div className="whitePaper">
           <TaskIntroducer addTask={this.props.addTask} />
           <TaskHolder
-            tasks={paginatedTasks}
+            tasks={placeholderedTasks}
             doTask={this.props.doTask}
             undoTask={this.props.undoTask}
           />
