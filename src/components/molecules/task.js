@@ -5,7 +5,7 @@ class Task extends Component {
     const { text, onClick, done, className, placeholder } = this.props;
     const style = done ? { textDecoration: 'line-through' }
       : { textDecoration: 'none' };
-    const onClickTask = placeholder !== void 0 ? onClick : () => { };
+    const onClickTask = !placeholder ? onClick : () => { };
     return (
       <li className={className} style={style} onClick={onClickTask}>
         {text}

@@ -11,7 +11,8 @@ const tasks = (state = initialState, action) => {
         {
           id: state.reduce(prev => prev + 1, 0),
           done: false,
-          text: action.text
+          text: action.text,
+          placeholder: false
         },
         ...state
       ];

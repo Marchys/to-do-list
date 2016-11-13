@@ -16,6 +16,7 @@ class TaskHolder extends Component {
                 className="task"
                 text={task.text}
                 done={task.done}
+                placeholder={task.placeholder}
                 onClick={task.done ?
                   undoTask.bind(void 0, task.id) : doTask.bind(void 0, task.id)}
               />
