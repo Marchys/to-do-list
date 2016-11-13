@@ -1,4 +1,4 @@
-.container{
+.header{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,7 +9,7 @@
   border-top-right-radius: 12px;
 }
 
-.title{
+.header-title{
   font-size: 20px;
   color:white;
   border: none;
@@ -18,7 +18,7 @@
   margin-left: 15px;
 }
 
-.input{
+.input-search{
   width: 90%;
   font-size: 20px;
   background-color: transparent;
@@ -31,7 +31,7 @@
 }
 
 
-.button{
+.search-button{
   font-size: 21px;
   border:none;
   background-color: transparent;
@@ -40,6 +40,6 @@
   color:white;
 }
 
-.button:hover{
+.search-button:hover{
 color:lightgrey;
 }

@@ -15,6 +15,12 @@ const selector = state => ({
   pagination: state.pagination,
 });
 
+/**
+  * @function App#applyFilter Applies a filter over an array of tasks.
+  * @param {array} tasks - array of tasks
+  * @param {string} filter - the corresponding array filter
+  * @return {array} The tasks after applying the corresponding filter.
+  */
 const applyFilter = (tasks, filter) => {
   switch (filter) {
     case 'FILTER_ALL':
@@ -28,10 +34,24 @@ const applyFilter = (tasks, filter) => {
   }
 };
 
-const applySearch = (tasks, taskSearch) => {
-  return tasks.filter(task => task.text.includes(taskSearch));
+/**
+  * @function App#applySearch Applies a search over the tasks
+  * @param {array} tasks - array of tasks
+  * @param {string} term - the term to search
+  * @return {array} The tasks that pass the search
+  */
+const applySearch = (tasks, term) => {
+  return tasks.filter(task => task.text.includes(term));
 };
 
+/**
+  * @function App#applyPagination Applies a pagination over the tasks
+  * @param {array} tasks - array of tasks
+  * @param {number} pageAmount - amount of pages
+  * @param {number} page - current page
+  * @param {number} itemsPerPage
+  * @return {array} The tasks that correspond to the current page
+  */
 const applyPagination = (tasks, pageAmount, page, itemsPerPage) => {
   const lowerLimit = page * itemsPerPage;
   const upperLimit = lowerLimit + itemsPerPage;  
@@ -43,20 +63,45 @@ const applyPagination = (tasks, pageAmount, page, itemsPerPage) => {
   });
 };
 
-const getEnabledTasks = (tasks, filter, taskSearch) => {
+/**
+  * @function App#getEnabledTasks Passes multiple filters
+  * @param {array} tasks - array of tasks
+  * @param {number} filter
+  * @param {number} term
+  * @return {array} all the tasks enabled after passing the filter and search
+*/
+const getEnabledTasks = (tasks, filter, term) => {
   const filteredTasks = applyFilter(tasks, filter);
-  const searchedTasks = applySearch(filteredTasks, taskSearch);
+  const searchedTasks = applySearch(filteredTasks, term);
   return searchedTasks;
 };
 
+/**
+  * @function App#isPagePossible Calculates if the current page is possible
+  * @param {number} page
+  * @param {number} pageAmount
+  * @return {boolean}
+*/
 const isPagePossible = (page, pageAmount) => {
 return (page + 1) <= pageAmount;
 };
 
+/**
+  * @function App#getPageAmount Calculates the page amount
+  * @param {array} tasks
+  * @param {number} itemsPerPage
+  * @return {number}
+*/
 const getPageAmount = (tasks, itemsPerPage) => {
   return Math.ceil(tasks.length / itemsPerPage);
 };
 
+/**
+  * @function App#addPlaceholderTasks adds placeholderTasks to complete the task list
+  * @param {array} tasks
+  * @param {number} itemsPerPage
+  * @return {array}
+*/
 const addPlaceholderTasks = (tasks, itemsPerPage) => {
   if (tasks.length === itemsPerPage) {
     return tasks;
@@ -77,11 +122,14 @@ const addPlaceholderTasks = (tasks, itemsPerPage) => {
 class App extends Component {
   render() {
     const { tasks, filter, search, pagination } = this.props;
+    // gets all the tasks that will be visible in some way
     const enabledTasks = getEnabledTasks(tasks, filter, search.term);
+    // calculate the pagination
     const pageAmount = getPageAmount(enabledTasks, pagination.itemsPerPage);
     const calculatedPage = isPagePossible(pagination.page, pageAmount) ?
     pagination.page : pageAmount - 1;
     const paginatedTasks = applyPagination(enabledTasks, pageAmount, calculatedPage, pagination.itemsPerPage);
+    // adds the placeholder tasks to get a total equal to items per page
     const placeholderedTasks = addPlaceholderTasks(paginatedTasks, pagination.itemsPerPage);
     return (
       <div className="App">
@@ -97,7 +145,7 @@ class App extends Component {
           undoTask={this.props.undoTask}
           addTask={this.props.addTask}
         />
-        <Footer className="footer"
+        <Footer
           filter={filter}
           filterAll={this.props.filterAll}
           filterPending={this.props.filterPending}

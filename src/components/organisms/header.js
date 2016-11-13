@@ -14,10 +14,10 @@ class Header extends Component {
 
   renderSearching = (setSearch, disableSearch) => {
     return (
-      <div className="container">
-        <BasicInput className="input" placeholder="Type here your search" onKeyDown={setSearch} />
+      <div className="header">
+        <BasicInput className="input-search" placeholder="Type here your search" onKeyDown={setSearch} />
         <BasicButton
-          className="button"
+          className="search-button"
           onClick={disableSearch}
         >
           <i className="fa fa-times" />
@@ -28,10 +28,10 @@ class Header extends Component {
 
   renderDefault = (enableSearch) => {
     return (
-      <div className="container">
-        <h1 className="title" >The to-do list exercise</h1>
+      <div className="header">
+        <h1 className="header-title" >The to-do list exercise</h1>
         <BasicButton
-          className="button"
+          className="search-button"
           onClick={enableSearch}
         >
           <i className="fa fa-search" />
